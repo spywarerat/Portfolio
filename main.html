@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitin Singh | Full Stack Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #030305;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.15);
+      --primary: #8b5cf6;
+      --primary-glow: rgba(139, 92, 246, 0.4);
+      --secondary: #38bdf8;
+      /* The core Blue */
+      --secondary-glow: rgba(56, 189, 248, 0.4);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --radius: 16px;
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15), transparent 25%);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 5%;
+      background: rgba(3, 3, 5, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    /* BLUE NAV BUTTONS */
+    .nav-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.4rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--secondary);
+      transition: var(--transition);
+      border-radius: 2px;
+      box-shadow: 0 0 8px var(--secondary-glow);
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px var(--secondary-glow);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.highlight {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+
+    .nav-links a.highlight::after {
+      display: none;
+    }
+
+    .nav-links a.highlight:hover {
+      background: var(--secondary);
+      color: #000;
+      box-shadow: 0 4px 15px var(--secondary-glow);
+      text-shadow: none;
+    }
+
+    /* Layout Sections */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5% 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -1px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 4rem;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    /* Hero */
+    #home {
+      align-items: flex-start;
+    }
+
+    .badge {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      margin-bottom: 2rem;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, var(--secondary), var(--primary), #d946ef);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-desc {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 650px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.25rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: white;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-outline {
+      background-color: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--card-hover);
+      transform: translateY(-3px);
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--card-hover);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .skills-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .skills-card h3 {
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      padding: 0.6rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      transition: var(--transition);
+      font-weight: 300;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--secondary);
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-item {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      transition: var(--transition);
+    }
+
+    .info-item:hover {
+      border-color: var(--card-hover);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .info-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+
+    .info-item p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .form-group label {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem 1.25rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    /* =========================================
+       PURE CSS MODALS (Pop-ups for scraped data)
+       ========================================= */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .modal:target {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: #0d0d12;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 3rem;
+      transform: translateY(50px) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal:target .modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 2.5rem;
+      line-height: 1;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.05);
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .modal-close:hover {
+      color: var(--text-main);
+      background: #ef4444;
+      /* Red close button on hover */
+      transform: rotate(90deg);
+    }
+
+    .modal-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Nested Modal Back Button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Modal: Project Links (Clickable internally now) */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    a.proj-card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    a.proj-card:hover {
+      border-color: var(--secondary);
+      background: rgba(56, 189, 248, 0.05);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    a.proj-card span.tag {
+      color: var(--secondary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    a.proj-card h4 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    a.proj-card:hover h4 {
+      color: var(--secondary);
+    }
+
+    /* Mockup Container inside Project Modals */
+    .mockup-window {
+      background: #ffffff;
+      color: #000000;
+      padding: 2rem;
+      border-radius: 8px;
+      font-family: "Times New Roman", Times, serif;
+      /* To match your screenshots exactly */
+      overflow-x: auto;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+    }
+
+    .mockup-window h1,
+    .mockup-window h2 {
+      margin-bottom: 10px;
+    }
+
+    .mockup-window hr {
+      margin: 10px 0;
+      border: 1px solid #ccc;
+    }
+
+    .mockup-window ul,
+    .mockup-window ol {
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .mockup-window table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .mockup-window th,
+    .mockup-window td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .mockup-window input,
+    .mockup-window select,
+    .mockup-window button {
+      margin-bottom: 10px;
+      padding: 3px;
+    }
+
+    .mockup-window a {
+      color: blue;
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-top: 4rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem 5%;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <a href="#home" class="nav-logo">Nitin<span>.dev</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#resume-modal" class="highlight">Interactive Resume</a></li>
+      <li><a href="#projects-modal" class="highlight">10 Lab Projects</a></li>
+    </ul>
+  </header>
+
+  <section id="home">
+    <div class="badge animate-in">Available for hire</div>
+    <h1 class="hero-title animate-in delay-1">Designing & building <span>digital products</span> that scale.</h1>
+    <p class="hero-desc animate-in delay-2">
+      Full Stack Website Developer specializing in HTML, CSS, JavaScript, modern libraries, and robust backend
+      architectures to build seamless web experiences.
+    </p>
+    <div class="hero-buttons animate-in delay-3">
+      <a href="#contact" class="btn btn-primary">Start a Project</a>
+      <a href="#projects-modal" class="btn btn-outline">View My Projects</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">A brief look into my background, expertise, and focus areas.</p>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I am Nitin Singh, a passionate Full Stack Website Developer from Varanasi with 4 years of experience building
+          modern, responsive, and dynamic web applications from the ground up.
+        </p>
+        <p>
+          My expertise spans across the entire stack—from crafting beautiful user interfaces with HTML, CSS, and
+          JavaScript, to integrating powerful libraries and building reliable backend systems that scale effectively.
+        </p>
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">6+</div>
+            <div class="stat-label">Shipped Main Projects</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-card">
+        <h3>Core Competencies</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML5 & CSS3</span>
+          <span class="skill-tag">JavaScript ES6+</span>
+          <span class="skill-tag">C++ / Object-Oriented</span>
+          <span class="skill-tag">Backend Development</span>
+          <span class="skill-tag">Responsive Architecture</span>
+          <span class="skill-tag">Full Stack Development</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <p class="section-subtitle">Let's connect and discuss your next build.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="info-item">
+          <h4>Email</h4>
+          <p>spywarerat9236@gmail.com</p>
+        </div>
+        <div class="info-item">
+          <h4>Phone</h4>
+          <p>+91 9236995415</p>
+        </div>
+        <div class="info-item">
+          <h4>Location</h4>
+          <p>Varanasi, India (Open to Remote)</p>
+        </div>
+      </div>
+
+      <form class="contact-form" action="#" method="POST" onsubmit="return false;">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Briefly describe your project or inquiry..."
+            required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Nitin Singh. Built with semantic HTML & modern CSS.</p>
+  </footer>
+
+  <div id="resume-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <h2 class="modal-title">Interactive Resume</h2>
+      <div
+        style="border-left: 2px solid var(--card-border); padding-left: 2rem; position: relative; margin-bottom: 2.5rem;">
+        <h4 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 0.3rem;">C++ Programming Intern</h4>
+        <span
+          style="color: var(--secondary); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; display: inline-block; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 6px;">2025
+          – 2026 | Thiranex (Remote)</span>
+        <p style="color: var(--text-muted); line-height: 1.6;">Practiced Object-Oriented Programming, worked with
+          standard template libraries (STL), and improved problem-solving skills handling file I/O operations.</p>
+      </div>
+      <div
+        style="border-left: 2px solid var(--card-border); padding-left: 2rem; position: relative; margin-bottom: 2.5rem;">
+        <h4 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 0.3rem;">B.Tech in Computer Science &
+          Engineering</h4>
+        <span
+          style="color: var(--secondary); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; display: inline-block; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 6px;">2025
+          – Present | Kamla Institute of Technology</span>
+        <p style="color: var(--text-muted); line-height: 1.6;">Affiliated to AKTU, Varanasi. Currently in first year
+          studying core CS fundamentals alongside expanding knowledge into Full-Stack Web Development.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="projects-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <h2 class="modal-title">Web Tech Lab Projects</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">A collection of my HTML practicals. <strong>Click any
+          card to view its content instantly.</strong></p>
+
+      <div class="project-grid">
+        <a href="#p1-modal" class="proj-card"><span class="tag">P1 / Foundation</span>
+          <h4>Basic HTML Web Page</h4>
+        </a>
+        <a href="#p2-modal" class="proj-card"><span class="tag">P2 / Structure</span>
+          <h4>Lists in HTML</h4>
+        </a>
+        <a href="#p3-modal" class="proj-card"><span class="tag">P3 / Data</span>
+          <h4>HTML Tables Layout</h4>
+        </a>
+        <a href="#p4-modal" class="proj-card"><span class="tag">P4 / Routing</span>
+          <h4>Hyperlinks & Navigation</h4>
+        </a>
+        <a href="#p5-modal" class="proj-card"><span class="tag">P5 / Media</span>
+          <h4>Images and Multimedia</h4>
+        </a>
+        <a href="#p6-modal" class="proj-card"><span class="tag">P6 / Forms</span>
+          <h4>HTML Registration Form</h4>
+        </a>
+        <a href="#p7-modal" class="proj-card"><span class="tag">P7 / Inputs</span>
+          <h4>HTML5 Input Types</h4>
+        </a>
+        <a href="#p8-modal" class="proj-card"><span class="tag">P8 / Architecture</span>
+          <h4>Complete College Website</h4>
+        </a>
+        <a href="#p9-modal" class="proj-card"><span class="tag">P9 / Personal</span>
+          <h4>Student Resume Portfolio</h4>
+        </a>
+        <a href="#p10-modal" class="proj-card"><span class="tag">P10 / Mini-Project</span>
+          <h4>Student Management System</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="p1-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P1: Basic HTML Web Page</h2>
+
+      <div class="mockup-window">
+        <h1>Kashi Institute of Technology</h1>
+        <hr>
+        <p><b>Student Name:</b> Nitin Singh</p>
+        <p><b>Roll Number:</b> 2301230100129</p>
+        <p><b>Branch:</b> Computer Science & Engineering (CSE)</p>
+        <hr>
+        <p>Our college is a <b>premier institution</b> dedicated to providing <i>quality technical education</i> and
+          fostering <u>innovation and research</u>.</p>
+        <h2>Practicals List</h2>
+        <ol>
+          <li><a href="#">P1: Basic HTML Web Page</a></li>
+          <li><a href="#">P2: Lists in HTML</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div id="p2-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P2: Lists in HTML</h2>
+
+      <div class="mockup-window">
+        <h2>Programming Languages</h2>
+        <ol>
+          <li>C</li>
+          <li>C++</li>
+          <li>Java</li>
+          <li>Python</li>
+        </ol>
+        <h2>Web Technologies</h2>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>PHP</li>
+        </ul>
+        <h2>College Branches</h2>
+        <ul>
+          <li>B.Tech
+            <ul>
+              <li>CSE (AI/ML)</li>
+              <li>Computer Science & Engineering</li>
+            </ul>
+          </li>
+          <li>Management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="p3-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P3: HTML Tables</h2>
+
+      <div class="mockup-window">
+        <h2>Student Marksheet</h2>
+        <table>
+          <tr>
+            <th colspan="6">Semester Examination Results</th>
+          </tr>
+          <tr>
+            <th>Roll No.</th>
+            <th>Name</th>
+            <th>Java</th>
+            <th>Python</th>
+            <th>DBMS</th>
+            <th>Total</th>
+          </tr>
+          <tr>
+            <td>101</td>
+            <td>Rahul</td>
+            <td>85</td>
+            <td>78</td>
+            <td>82</td>
+            <td>245</td>
+          </tr>
+          <tr>
+            <td>102</td>
+            <td>Aman</td>
+            <td>75</td>
+            <td>88</td>
+            <td>79</td>
+            <td>242</td>
+          </tr>
+          <tr>
+            <td>103</td>
+            <td>Priya</td>
+            <td>92</td>
+            <td>90</td>
+            <td>95</td>
+            <td>277</td>
+          </tr>
+          <tr>
+            <td colspan="5" style="text-align:right;"><b>Status</b></td>
+            <td>All Passed</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="p4-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P4: Hyperlinks and Navigation</h2>
+
+      <div class="mockup-window">
+        <p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Courses</a> | <a href="#">Contact</a></p>
+        <hr>
+        <h2>External Resources (Opens in New Tab)</h2>
+        <ul>
+          <li><a href="#">Google</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">College Website</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="p5-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P5: Images and Multimedia</h2>
+
+      <div class="mockup-window">
+        <p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Courses</a> | <a href="#">Contact</a></p>
+        <hr>
+        <h2>External Resources</h2>
+        <ul>
+          <li><a href="#">Google</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">GitHub</a></li>
+        </ul>
+        <p><i>(Multimedia content placeholder)</i></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="p6-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P6: HTML Registration Form</h2>
+
+      <div class="mockup-window">
+        <h2>Student Registration Form</h2>
+        <form onsubmit="return false;">
+          <p>Full Name:<br><input type="text"></p>
+          <p>Father's Name:<br><input type="text"></p>
+          <p>Date of Birth:<br><input type="date"></p>
+          <p>Gender:<br><input type="radio" name="g"> Male <input type="radio" name="g"> Female <input type="radio"
+              name="g"> Other</p>
+          <p>Email Address:<br><input type="email"></p>
+          <p>Address:<br><textarea></textarea></p>
+          <p>Course:<br><select>
+              <option>Select Course</option>
+            </select></p>
+          <p>Upload Photograph:<br><input type="file"></p>
+          <button>Submit</button> <button>Reset</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="p7-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P7: HTML5 Input Types</h2>
+
+      <div class="mockup-window">
+        <h2>HTML5 Input Demonstration</h2>
+        <form onsubmit="return false;">
+          <p>Text: <input type="text"></p>
+          <p>Email: <input type="email"></p>
+          <p>Password: <input type="password"></p>
+          <p>Number: <input type="number"></p>
+          <p>Date: <input type="date"></p>
+          <p>Color: <input type="color"></p>
+          <p>Range: <input type="range"></p>
+          <p><input type="checkbox"> Agree to terms</p>
+          <button>Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="p8-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P8: College Website</h2>
+
+      <div class="mockup-window">
+        <h1>Kashi Institute of Technology</h1>
+        <p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Departments</a> | <a href="#">Contact</a></p>
+        <hr>
+        <h2>About the College</h2>
+        <p>Providing excellence in technical education and research.</p>
+        <h2>Courses Offered</h2>
+        <ul>
+          <li>B.Tech (CSE, AI/ML, IT, Mechanical, Civil)</li>
+          <li>Management (MBA, BBA)</li>
+        </ul>
+        <h2>Facilities</h2>
+        <p>Advanced Computer Labs, Digital Library, Sports Complex, and Wi-Fi Campus.</p>
+        <hr>
+        <p><b>Address:</b> Varanasi, Uttar Pradesh, India</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="p9-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P9: Student Resume</h2>
+
+      <div class="mockup-window">
+        <h1>Nitin Singh</h1>
+        <p>Email: spywarerat9236@gmail.com | Phone: +91 9236995415 | Location: Varanasi</p>
+        <hr>
+        <h2>Career Objective</h2>
+        <p>Motivated B.Tech CSE (CSE) student aiming to apply foundational engineering skills...</p>
+        <h2>Education</h2>
+        <table>
+          <tr>
+            <th>Qualification</th>
+            <th>Institution</th>
+            <th>Year</th>
+            <th>Percentage</th>
+          </tr>
+          <tr>
+            <td>B.Tech (CSE AI/ML)</td>
+            <td>Kashi Institute of Tech</td>
+            <td>2023-2027</td>
+            <td>8.2 CGPA</td>
+          </tr>
+          <tr>
+            <td>Intermediate (12th)</td>
+            <td>State Board</td>
+            <td>2023</td>
+            <td>82%</td>
+          </tr>
+        </table>
+        <h2>Technical Skills</h2>
+        <ul>
+          <li>HTML5 & CSS</li>
+          <li>Java</li>
+          <li>Python</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="p10-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">&times;</a>
+      <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
+      <h2 class="modal-title">P10: Student Management Webpage</h2>
+
+      <div class="mockup-window">
+        <p><a href="#">Home</a> | <a href="#">Student Registration</a> | <a href="#">Student Records</a></p>
+        <hr>
+        <h2>Home</h2>
+        <p>Welcome to the Student Management System. This portal provides comprehensive student onboarding...</p>
+        <hr>
+        <h2>Student Records</h2>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Branch</th>
+            <th>Email</th>
+          </tr>
+          <tr>
+            <td>101</td>
+            <td>Rahul</td>
+            <td>B.Tech</td>
+            <td>CSE</td>
+            <td>rahul@email.com</td>
+          </tr>
+          <tr>
+            <td>102</td>
+            <td>Aman</td>
+            <td>B.Tech</td>
+            <td>CSE</td>
+            <td>aman@email.com</td>
+          </tr>
+        </table>
+        <hr>
+        <h2>Contact Us</h2>
+        <form onsubmit="return false;">
+          <p>Name: <input type="text"></p>
+          <p>Email: <input type="email"></p>
+          <p>Message:<br><textarea></textarea></p>
+          <button>Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
