@@ -16,7 +16,6 @@
       --primary: #8b5cf6;
       --primary-glow: rgba(139, 92, 246, 0.4);
       --secondary: #38bdf8;
-      /* The core Blue */
       --secondary-glow: rgba(56, 189, 248, 0.4);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
@@ -110,7 +109,6 @@
       align-items: center;
     }
 
-    /* BLUE NAV BUTTONS */
     .nav-links a {
       color: var(--secondary);
       text-decoration: none;
@@ -263,6 +261,7 @@
       color: var(--text-main);
       border: 1px solid var(--card-border);
       backdrop-filter: blur(10px);
+      text-decoration: none;
     }
 
     .btn-outline:hover {
@@ -447,9 +446,7 @@
       min-height: 150px;
     }
 
-    /* =========================================
-       PURE CSS MODALS (Pop-ups for scraped data)
-       ========================================= */
+    /* Modals System */
     .modal {
       position: fixed;
       top: 0;
@@ -513,7 +510,6 @@
     .modal-close:hover {
       color: var(--text-main);
       background: #ef4444;
-      /* Red close button on hover */
       transform: rotate(90deg);
     }
 
@@ -529,7 +525,6 @@
       gap: 1rem;
     }
 
-    /* Nested Modal Back Button */
     .btn-back {
       display: inline-flex;
       align-items: center;
@@ -540,7 +535,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Modal: Project Links (Clickable internally now) */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -585,14 +579,13 @@
       color: var(--secondary);
     }
 
-    /* Mockup Container inside Project Modals */
+    /* Mockup Container */
     .mockup-window {
       background: #ffffff;
       color: #000000;
       padding: 2rem;
       border-radius: 8px;
       font-family: "Times New Roman", Times, serif;
-      /* To match your screenshots exactly */
       overflow-x: auto;
       margin-top: 1rem;
       border: 1px solid #ccc;
@@ -629,9 +622,10 @@
 
     .mockup-window input,
     .mockup-window select,
+    .mockup-window textarea,
     .mockup-window button {
       margin-bottom: 10px;
-      padding: 3px;
+      padding: 4px;
     }
 
     .mockup-window a {
@@ -649,7 +643,6 @@
       margin-top: 4rem;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 900px) {
       .navbar {
         flex-direction: column;
@@ -787,6 +780,7 @@
     <p>&copy; 2026 Nitin Singh. Built with semantic HTML & modern CSS.</p>
   </footer>
 
+  <!-- Resume Modal -->
   <div id="resume-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
@@ -798,7 +792,7 @@
           style="color: var(--secondary); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; display: inline-block; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 6px;">2025
           – 2026 | Thiranex (Remote)</span>
         <p style="color: var(--text-muted); line-height: 1.6;">Practiced Object-Oriented Programming, worked with
-          standard template libraries (STL), and improved problem-solving skills handling file I/O operations.</p>
+          standard template libraries (STL), and improved problem-solving skills by handling file I/O operations.</p>
       </div>
       <div
         style="border-left: 2px solid var(--card-border); padding-left: 2rem; position: relative; margin-bottom: 2.5rem;">
@@ -807,12 +801,13 @@
         <span
           style="color: var(--secondary); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.8rem; display: inline-block; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 6px;">2025
           – Present | Kamla Institute of Technology</span>
-        <p style="color: var(--text-muted); line-height: 1.6;">Affiliated to AKTU, Varanasi. Currently in first year
+        <p style="color: var(--text-muted); line-height: 1.6;">Affiliated to AKTU, Varanasi. Currently in the first year
           studying core CS fundamentals alongside expanding knowledge into Full-Stack Web Development.</p>
       </div>
     </div>
   </div>
 
+  <!-- Projects Hub Modal -->
   <div id="projects-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
@@ -854,12 +849,13 @@
       </div>
     </div>
   </div>
+
+  <!-- Project 1 Modal -->
   <div id="p1-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P1: Basic HTML Web Page</h2>
-
       <div class="mockup-window">
         <h1>Kashi Institute of Technology</h1>
         <hr>
@@ -878,12 +874,12 @@
     </div>
   </div>
 
+  <!-- Project 2 Modal -->
   <div id="p2-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P2: Lists in HTML</h2>
-
       <div class="mockup-window">
         <h2>Programming Languages</h2>
         <ol>
@@ -913,12 +909,12 @@
     </div>
   </div>
 
+  <!-- Project 3 Modal -->
   <div id="p3-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P3: HTML Tables</h2>
-
       <div class="mockup-window">
         <h2>Student Marksheet</h2>
         <table>
@@ -966,12 +962,12 @@
     </div>
   </div>
 
+  <!-- Project 4 Modal -->
   <div id="p4-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P4: Hyperlinks and Navigation</h2>
-
       <div class="mockup-window">
         <p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Courses</a> | <a href="#">Contact</a></p>
         <hr>
@@ -986,12 +982,12 @@
     </div>
   </div>
 
+  <!-- Project 5 Modal -->
   <div id="p5-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P5: Images and Multimedia</h2>
-
       <div class="mockup-window">
         <p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Courses</a> | <a href="#">Contact</a></p>
         <hr>
@@ -1006,12 +1002,12 @@
     </div>
   </div>
 
+  <!-- Project 6 Modal -->
   <div id="p6-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P6: HTML Registration Form</h2>
-
       <div class="mockup-window">
         <h2>Student Registration Form</h2>
         <form onsubmit="return false;">
@@ -1032,12 +1028,12 @@
     </div>
   </div>
 
+  <!-- Project 7 Modal -->
   <div id="p7-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P7: HTML5 Input Types</h2>
-
       <div class="mockup-window">
         <h2>HTML5 Input Demonstration</h2>
         <form onsubmit="return false;">
@@ -1055,12 +1051,12 @@
     </div>
   </div>
 
+  <!-- Project 8 Modal -->
   <div id="p8-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P8: College Website</h2>
-
       <div class="mockup-window">
         <h1>Kashi Institute of Technology</h1>
         <p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Departments</a> | <a href="#">Contact</a></p>
@@ -1080,18 +1076,18 @@
     </div>
   </div>
 
+  <!-- Project 9 Modal -->
   <div id="p9-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P9: Student Resume</h2>
-
       <div class="mockup-window">
         <h1>Nitin Singh</h1>
         <p>Email: spywarerat9236@gmail.com | Phone: +91 9236995415 | Location: Varanasi</p>
         <hr>
         <h2>Career Objective</h2>
-        <p>Motivated B.Tech CSE (CSE) student aiming to apply foundational engineering skills...</p>
+        <p>Motivated B.Tech CSE student aiming to apply foundational engineering skills...</p>
         <h2>Education</h2>
         <table>
           <tr>
@@ -1123,12 +1119,12 @@
     </div>
   </div>
 
+  <!-- Project 10 Modal -->
   <div id="p10-modal" class="modal">
     <div class="modal-content">
       <a href="#" class="modal-close">&times;</a>
       <a href="#projects-modal" class="btn-outline btn-back">&larr; Back to Projects</a>
       <h2 class="modal-title">P10: Student Management Webpage</h2>
-
       <div class="mockup-window">
         <p><a href="#">Home</a> | <a href="#">Student Registration</a> | <a href="#">Student Records</a></p>
         <hr>
@@ -1174,4 +1170,3 @@
 </body>
 
 </html>
-
